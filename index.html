@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cravery — Where cravings meet comfort</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="apple-touch-icon" href="favicon.png" />
+<style>
+  :root{
+    --cream:#fff8f3; --blush:#f7cfc9; --blush-2:#f5bdb3; --coral:#ef9a82; --terra:#bc5836;
+    --terra-d:#9c4329; --cocoa:#39211a; --cocoa-2:#5a3b30; --muted:#8a6f63; --line:#ecd9cd; --gold:#c98a2b;
+    --maxw:1240px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--cream);color:var(--cocoa);font-family:'DM Sans',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .serif{font-family:'Fraunces',Georgia,serif}
+  .script{font-family:'Dancing Script',cursive}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(1.1rem,4vw,2.6rem);position:relative}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .btn{display:inline-flex;align-items:center;gap:.5rem;font-weight:600;border-radius:999px;padding:.95rem 1.5rem;transition:transform .2s ease,background .2s ease,color .2s ease;border:1.5px solid transparent;cursor:pointer;font-size:.98rem}
+  .btn:active{transform:scale(.97)}
+  .btn-primary{background:var(--terra);color:#fff}
+  .btn-primary:hover{background:var(--terra-d)}
+  .btn-ghost{border-color:var(--cocoa);color:var(--cocoa)}
+  .btn-ghost:hover{background:var(--cocoa);color:var(--cream)}
+  .pill{display:inline-flex;align-items:center;gap:.4rem;background:#fff;border:1px solid var(--line);border-radius:999px;padding:.4rem .85rem;font-size:.82rem;font-weight:600}
+  .star{color:var(--gold)}
+  .eyebrow{color:var(--terra);font-weight:700;letter-spacing:.18em;text-transform:uppercase;font-size:.72rem}
+  .arrow{transition:transform .2s ease}
+  .order:hover .arrow{transform:translateX(4px)}
+
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.marquee__track{animation:none!important}}
+
+  .mock-banner{background:var(--cocoa);color:var(--cream);text-align:center;font-size:.78rem;letter-spacing:.05em;padding:.5rem}
+  .mock-banner b{color:var(--coral)}
+
+  /* brand / logo */
+  .brand{display:flex;align-items:center;gap:.55rem}
+  .logo-badge{width:42px;height:42px;object-fit:contain;display:block}
+  .wordmark{font-family:'Dancing Script';font-weight:700;font-size:2rem;color:var(--cocoa);line-height:1}
+
+  header.site{position:sticky;top:0;z-index:40;background:var(--cream);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px;gap:1rem}
+  .nav-links{display:none;gap:1.8rem;font-weight:500;color:var(--muted)}
+  .nav-links a:hover{color:var(--cocoa)}
+  @media(min-width:920px){.nav-links{display:flex}}
+
+  /* marquee */
+  .marquee{background:var(--cocoa);color:var(--cream);overflow:hidden;white-space:nowrap}
+  .marquee__track{display:inline-flex;animation:scroll 36s linear infinite;will-change:transform}
+  .marquee span{font-family:'Fraunces';font-size:.95rem;display:inline-flex;align-items:center;gap:2.4rem;padding-right:2.4rem}
+  .marquee .dot{color:var(--coral)}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+
+  /* hero */
+  .hero{position:relative;background:#f8dad4;overflow:hidden}
+  .hero-inner{display:grid;grid-template-columns:1fr;gap:2.4rem;align-items:center;padding:clamp(2.8rem,6vw,5.5rem) 0 clamp(3rem,6vw,5rem)}
+  @media(min-width:920px){.hero-inner{grid-template-columns:1.04fr .96fr;gap:1.5rem}}
+  h1.hero{font-family:'Fraunces';font-weight:600;font-size:clamp(2.7rem,6.3vw,5.1rem);line-height:1.07;letter-spacing:-.025em;margin:.9rem 0 .4rem}
+  h1.hero .script{display:inline-block;font-size:1.18em;line-height:1.15;color:var(--terra);font-weight:700;transform:rotate(-2deg);padding:0 .16em .22em}
+  .hero p.lead{color:var(--cocoa-2);font-size:1.12rem;max-width:42ch;margin-top:.9rem}
+  .cta-row{display:flex;flex-wrap:wrap;gap:.8rem;margin:1.7rem 0 1.3rem}
+  .ratings{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
+  .hero-art{position:relative;min-height:460px}
+  .hero-art figure{position:absolute;border-radius:20px;overflow:hidden;box-shadow:0 30px 56px -26px rgba(57,33,26,.55);border:7px solid #fff}
+  .hero-art img{width:100%;height:100%;object-fit:cover}
+  .hero-art .f-main{width:72%;aspect-ratio:4/5;right:6%;top:0;transform:rotate(3deg);z-index:2}
+  .hero-art .f-sub{width:46%;aspect-ratio:1/1;left:0;bottom:6%;transform:rotate(-5deg);z-index:3}
+  .sticker{position:absolute;z-index:4;right:2%;bottom:10%;background:var(--gold);color:var(--cocoa);font-family:'Dancing Script';font-weight:700;font-size:1.15rem;padding:.5rem 1.05rem;border-radius:999px;transform:rotate(-7deg);box-shadow:0 12px 22px -12px rgba(57,33,26,.5)}
+  .scribble{position:absolute;z-index:4;left:8%;top:-6%;color:var(--terra);font-family:'Dancing Script';font-size:1.3rem;transform:rotate(-5deg)}
+
+  section{padding:clamp(3rem,6vw,5.5rem) 0;position:relative}
+  h2.big{font-family:'Fraunces';font-weight:600;font-size:clamp(2rem,4.6vw,3.4rem);line-height:1.04;letter-spacing:-.02em}
+
+  /* statement */
+  .statement{background:var(--cocoa);color:var(--cream)}
+  .statement h2{font-family:'Fraunces';font-weight:600;font-size:clamp(2.1rem,5vw,3.9rem);line-height:1.05;letter-spacing:-.02em;max-width:18ch}
+  .statement h2 .script{color:var(--coral);font-weight:700}
+  .statement p{color:#e3cfc4;font-size:1.1rem;max-width:48ch;margin:1.3rem 0 1.8rem}
+  .statement .num{font-family:'Fraunces';color:var(--coral);font-weight:600}
+
+  /* editorial spreads */
+  .spread{display:grid;grid-template-columns:1fr;gap:1.8rem;align-items:center;margin:clamp(2.4rem,5vw,4.4rem) 0}
+  @media(min-width:860px){.spread{grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4.5rem)}.spread.rev .ph{order:2}}
+  .spread .ph{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 30px 60px -34px rgba(57,33,26,.55)}
+  .spread .ph img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+  .spread .ph:hover img{transform:scale(1.05)}
+  .spread .no{font-family:'Fraunces';font-weight:600;font-size:1rem;color:var(--terra);letter-spacing:.04em}
+  .spread h3{font-family:'Fraunces';font-weight:600;font-size:clamp(1.7rem,3.4vw,2.5rem);line-height:1.05;letter-spacing:-.015em;margin:.5rem 0 .7rem}
+  .spread p{color:var(--cocoa-2);font-size:1.05rem;max-width:38ch}
+  .spread .meta{display:flex;align-items:center;gap:1.3rem;margin-top:1.3rem}
+  .spread .price{font-family:'Fraunces';font-weight:600;font-size:1.3rem}
+  .spread .order{font-weight:600;color:var(--terra);display:inline-flex;align-items:center;gap:.4rem}
+
+  /* ambience interior band */
+  .ambience{position:relative;min-height:clamp(440px,58vh,600px);display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;
+    background:linear-gradient(rgba(40,22,16,.45),rgba(40,22,16,.62)), url("photos/627050793_1446090590862837_4839325751768646853_n.jpg") center/cover no-repeat;}
+  .ambience h2{font-family:'Fraunces';font-weight:600;font-size:clamp(2.2rem,5.5vw,4rem);line-height:1.05}
+  .ambience .script{color:#ffe2d6;font-weight:700}
+  .ambience p{margin:.8rem auto 1.6rem;max-width:38ch;color:#f3e3da}
+
+  /* founder story */
+  .story{background:var(--blush)}
+  .story-grid{display:grid;grid-template-columns:1fr;gap:2rem;align-items:center}
+  @media(min-width:880px){.story-grid{grid-template-columns:.85fr 1.15fr;gap:clamp(2rem,5vw,4rem)}}
+  .clip{border-radius:14px;overflow:hidden;box-shadow:0 26px 50px -28px rgba(57,33,26,.55);transform:rotate(-2deg);border:8px solid #fff;max-width:380px;margin:0 auto}
+  .story h2{font-family:'Fraunces';font-weight:600;font-size:clamp(1.9rem,4.4vw,3rem);line-height:1.06;letter-spacing:-.015em;margin:.5rem 0 .9rem}
+  .story h2 .script{color:var(--terra);font-weight:700}
+  .story p{color:var(--cocoa-2);font-size:1.06rem;max-width:46ch}
+  .story .sign{font-family:'Dancing Script';font-weight:700;font-size:1.5rem;color:var(--cocoa);margin-top:1rem}
+  .story .press{margin-top:1.1rem;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .story .press b{color:var(--cocoa);font-family:'Fraunces';letter-spacing:0;text-transform:none;font-size:1rem}
+
+  /* little things ribbon */
+  .little{background:var(--cream);text-align:center}
+  .little .script{color:var(--terra);font-size:clamp(2rem,5vw,3rem);display:block;transform:rotate(-2deg)}
+  .little .ribbon{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.4rem 1rem;max-width:62rem;margin:1.3rem auto 0}
+  .little .ribbon span{font-family:'Fraunces';font-size:clamp(1.05rem,2.4vw,1.45rem);color:var(--cocoa)}
+  .little .ribbon .sq{color:var(--terra);opacity:.85}
+
+  /* gallery */
+  .gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:.9rem}
+  @media(min-width:720px){.gallery{grid-template-columns:repeat(4,1fr)}}
+  .gallery figure{border-radius:14px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 16px 34px -26px rgba(57,33,26,.5);transition:transform .35s ease}
+  .gallery figure:nth-child(3n){transform:rotate(-2deg)}
+  .gallery figure:nth-child(4n){transform:rotate(2deg)}
+  .gallery figure:hover{transform:scale(1.04) rotate(0)}
+  .gallery img{width:100%;height:100%;object-fit:cover}
+
+  /* reviews */
+  .quote{font-family:'Fraunces';font-style:italic;font-weight:500;font-size:clamp(1.6rem,3.6vw,2.6rem);line-height:1.25;max-width:24ch}
+  .quote .mark{color:var(--terra)}
+  .rev-grid{display:grid;grid-template-columns:1fr;gap:1rem;margin-top:1.8rem}
+  @media(min-width:760px){.rev-grid{grid-template-columns:repeat(3,1fr)}}
+  .rev{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.2rem}
+  .rev p{font-size:.95rem;margin:.4rem 0}
+  .rev .who{color:var(--muted);font-size:.82rem;font-weight:600}
+
+  /* locations */
+  .locs{display:grid;grid-template-columns:1fr;gap:1rem}
+  @media(min-width:760px){.locs{grid-template-columns:1fr 1fr}}
+  .loc{background:#fff;border:1px solid var(--line);border-radius:18px;padding:1.5rem;display:flex;flex-direction:column;gap:.45rem}
+  .loc h3{font-family:'Fraunces';font-weight:600;font-size:1.35rem;display:flex;align-items:center;gap:.5rem}
+  .loc .meta{color:var(--muted);font-size:.93rem}
+  .loc .acts{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.5rem}
+  .loc .acts a{font-size:.85rem;padding:.55rem 1.05rem}
+
+  /* final */
+  .final{background:radial-gradient(120% 120% at 18% 0%, var(--coral) 0%, var(--terra) 60%, var(--terra-d) 100%);color:#fff;border-radius:26px;padding:clamp(2.2rem,5vw,4rem);text-align:center}
+  .final h2{font-family:'Fraunces';font-weight:600;font-size:clamp(2rem,5vw,3.4rem);line-height:1.05}
+  .final .script{color:#ffe9c9}
+  .final p{color:#ffe2d6;margin:.9rem auto 1.7rem;max-width:40ch}
+  .final .btn-primary{background:#fff;color:var(--terra)}
+  .final .btn-ghost{border-color:rgba(255,255,255,.7);color:#fff}
+
+  footer.site{background:var(--cocoa);color:#cbb4a8;padding:2.6rem 0}
+  .foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1.2rem;align-items:center}
+  .foot .wordmark{color:var(--cream)}
+  .credit{font-size:.78rem;opacity:.7}
+
+  /* mobile sticky order */
+  .sticky-order{position:fixed;right:1rem;bottom:1rem;z-index:50;box-shadow:0 14px 30px -12px rgba(57,33,26,.6)}
+  @media(min-width:920px){.sticky-order{display:none}}
+</style>
+</head>
+<body id="top">
+  <div class="mock-banner">CONCEPT for Cravery — designed by <b>Thar Digital</b> · your photos, your story, your brand</div>
+
+  <header class="site">
+    <div class="wrap nav">
+      <a class="brand" href="#top"><img class="logo-badge" src="badge.png" alt="Cravery logo"><span class="wordmark">cravery</span></a>
+      <nav class="nav-links">
+        <a href="#menu">Menu</a><a href="#story">Our story</a><a href="#feed">Feed</a><a href="#visit">Visit</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="marquee" aria-hidden="true"><div class="marquee__track">
+    <span>Melts the Creamiest Mac &amp; Cheese <i class="dot">✦</i> Peri Peri Paneer Pan Pizza <i class="dot">✦</i> Southern Prawn Curry <i class="dot">✦</i> Sweetened with Love <i class="dot">✦</i> Breakfast Club <i class="dot">✦</i></span>
+    <span>Melts the Creamiest Mac &amp; Cheese <i class="dot">✦</i> Peri Peri Paneer Pan Pizza <i class="dot">✦</i> Southern Prawn Curry <i class="dot">✦</i> Sweetened with Love <i class="dot">✦</i> Breakfast Club <i class="dot">✦</i></span>
+  </div></div>
+
+  <!-- HERO -->
+  <div class="hero"><div class="wrap hero-inner">
+    <div class="reveal">
+      <span class="eyebrow">Jubilee Hills · Financial District · Hyderabad</span>
+      <h1 class="hero serif">Where cravings meet <span class="script">comfort</span></h1>
+      <p class="lead">Creamy, cheesy, and exactly what your cravings ordered — coffee, comfort food &amp; desserts, in two cosy homes across Hyderabad.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#order">Order Direct
+          <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost" href="#visit">Reserve a Table</a>
+      </div>
+      <div class="ratings">
+        <span class="pill"><span class="star">★</span> 4.7 Zomato · 1,900</span>
+        <span class="pill"><span class="star">★</span> 4.5 Google · 2,375</span>
+        <span class="pill">11.8K on Instagram</span>
+      </div>
+    </div>
+    <div class="reveal hero-art">
+      <span class="scribble">our most-ordered ↓</span>
+      <figure class="f-main"><img src="photos/719010002_1557714113033817_7358517062288974095_n.jpg" alt="Cravery Mac & Cheese — melts the creamiest"></figure>
+      <figure class="f-sub"><img src="photos/716788640_1553454096793152_232828017809015989_n.jpg" alt="Peri Peri Paneer Pan Pizza"></figure>
+      <span class="sticker">cheese pulls &amp; good moods</span>
+    </div>
+  </div></div>
+
+  <!-- STATEMENT -->
+  <section class="statement"><div class="wrap reveal">
+    <span class="eyebrow" style="color:var(--coral)">Own your cravings</span>
+    <h2 class="serif" style="margin-top:.8rem">You've earned <span class="num">11.8K</span> followers &amp; <span class="num">6,000+</span> reviews. <span class="script">Stop renting them out.</span></h2>
+    <p>Every order through the delivery apps hands over a fat commission — and your customer. Your own storefront turns that audience into <strong style="color:#fff">direct, commission-free</strong> orders and reservations. Same food. Faster. Yours.</p>
+    <a class="btn btn-primary" href="#order">Keep more of every plate
+      <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div></section>
+
+  <!-- MENU SPREADS -->
+  <section id="menu"><div class="wrap">
+    <div class="reveal" style="max-width:46ch;margin-bottom:.5rem">
+      <span class="eyebrow">The cravings</span>
+      <h2 class="big serif" style="margin-top:.6rem">Built for cheese pulls<br>and good moods.</h2>
+    </div>
+
+    <div class="spread reveal">
+      <div class="ph"><img loading="lazy" src="photos/719010002_1557714113033817_7358517062288974095_n.jpg" alt="Mac & Cheese"></div>
+      <div><div class="no">01 — Signature</div><h3 class="serif">Mac &amp; Cheese</h3>
+        <p>The one Hyderabad keeps coming back for — bubbling, golden, "melts the creamiest," with toasted garlic bread.</p>
+        <div class="meta"><span class="price">₹360</span><a class="order" href="#order">Order direct <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
+    </div>
+
+    <div class="spread rev reveal">
+      <div class="ph"><img loading="lazy" src="photos/716788640_1553454096793152_232828017809015989_n.jpg" alt="Peri Peri Paneer Pan Pizza"></div>
+      <div><div class="no">02 — Fan favourite</div><h3 class="serif">Peri Peri Paneer Pan Pizza</h3>
+        <p>Deep-pan, cheese to the very edge, peri-peri paneer kick. Built for the cheese pull and the photo before it.</p>
+        <div class="meta"><span class="price">₹390</span><a class="order" href="#order">Order direct <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
+    </div>
+
+    <div class="spread reveal">
+      <div class="ph"><img loading="lazy" src="photos/704671505_1539425271529368_96963851806247929_n.jpg" alt="Southern Prawn Curry"></div>
+      <div><div class="no">03 — From the South</div><h3 class="serif">Southern Prawn Curry</h3>
+        <p>Juicy prawns in a rich, aromatic gravy with steamed rice, zesty lime &amp; herbs. Comfort with a coastal soul.</p>
+        <div class="meta"><span class="price">₹480</span><a class="order" href="#order">Order direct <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
+    </div>
+
+    <div class="spread rev reveal">
+      <div class="ph"><img loading="lazy" src="photos/718213088_1557707823034446_5316152108460967_n.jpg" alt="Moroccan Grilled Cottage Cheese"></div>
+      <div><div class="no">04 — Most shared</div><h3 class="serif">Moroccan Grilled Cottage Cheese</h3>
+        <p>Char-grilled paneer, smoky-sweet glaze, a cooling dip — the starter that lands on every table.</p>
+        <div class="meta"><span class="price">₹340</span><a class="order" href="#order">Order direct <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
+    </div>
+
+    <div class="spread reveal">
+      <div class="ph"><img loading="lazy" src="photos/631073106_1450822350389661_4540734983235063364_n.jpg" alt="Sweetened with Love dessert"></div>
+      <div><div class="no">05 — Sweetened with love</div><h3 class="serif">The Dessert Table</h3>
+        <p>Where Cravery began — layered ice-cream, churros, chocolate &amp; almond crunch. The craving that started it all.</p>
+        <div class="meta"><span class="price">₹320</span><a class="order" href="#order">Order direct <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
+    </div>
+  </div></section>
+
+  <!-- AMBIENCE -->
+  <section class="ambience" id="visit" style="padding:0"><div class="wrap reveal">
+    <span class="eyebrow" style="color:#ffd9cd">The room</span>
+    <h2 class="serif" style="margin-top:.6rem">Your <span class="script">table's</span> waiting.</h2>
+    <p>Warm light, cosy corners, an outdoor garden — open 9 AM to 1 AM, every day.</p>
+    <a class="btn btn-primary" href="#order" style="background:#fff;color:var(--terra)">Reserve a Table</a>
+  </div></section>
+
+  <!-- FOUNDER STORY -->
+  <section class="story" id="story"><div class="wrap reveal">
+    <div class="story-grid">
+      <figure class="clip"><img loading="lazy" src="photos/653146340_1488104433328119_7895677146000024625_n.jpg" alt="Cravery founder Priya Vasireddy, featured in The New Indian Express"></figure>
+      <div>
+        <span class="eyebrow">Our story</span>
+        <h2 class="serif">A <span class="script">sweet</span> triumph.</h2>
+        <p>Cravery began with a craving. Hunting for the perfect cassata at midnight, founder
+          <strong>Priya Vasireddy</strong> started layering ice-creams at home. Friends insisted on
+          paying — and a café was born. What started as a craving became two of Hyderabad's most-loved cosy corners.</p>
+        <p style="margin-top:.8rem">Her mantra, then and now: <em>customer satisfaction, quality, and employee happiness.</em></p>
+        <div class="sign">— Priya Vasireddy, founder</div>
+        <div class="press">As featured in <b>The New Indian Express</b></div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- LITTLE THINGS -->
+  <section class="little"><div class="wrap reveal">
+    <span class="eyebrow">the little things</span>
+    <span class="script">why everyone stays a while</span>
+    <div class="ribbon">
+      <span>Wifi &amp; work-friendly</span>
+      <svg class="sq" width="40" height="20" viewBox="0 0 40 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 10c6-7 12 7 18 0s12-7 16 0"/><path d="M30 4l6 6-6 6"/></svg>
+      <span>Open till 1 AM</span>
+      <svg class="sq" width="40" height="20" viewBox="0 0 40 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 10c6-7 12 7 18 0s12-7 16 0"/><path d="M30 4l6 6-6 6"/></svg>
+      <span>Outdoor garden</span>
+      <svg class="sq" width="40" height="20" viewBox="0 0 40 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 10c6-7 12 7 18 0s12-7 16 0"/><path d="M30 4l6 6-6 6"/></svg>
+      <span>Valet parking</span>
+      <svg class="sq" width="40" height="20" viewBox="0 0 40 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 10c6-7 12 7 18 0s12-7 16 0"/><path d="M30 4l6 6-6 6"/></svg>
+      <span>Veg &amp; seafood</span>
+      <svg class="sq" width="40" height="20" viewBox="0 0 40 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 10c6-7 12 7 18 0s12-7 16 0"/><path d="M30 4l6 6-6 6"/></svg>
+      <span>Family &amp; kid-friendly</span>
+    </div>
+  </div></section>
+
+  <!-- GALLERY -->
+  <section id="feed"><div class="wrap">
+    <div class="reveal" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;margin-bottom:1.4rem">
+      <div><span class="eyebrow">@craverycafe</span><h2 class="big serif" style="margin-top:.5rem">Straight from the feed.</h2></div>
+      <a class="btn btn-ghost" href="https://instagram.com/craverycafe" target="_blank" rel="noopener">Follow · 11.8K</a>
+    </div>
+    <div class="gallery reveal">
+      <figure><img loading="lazy" src="photos/698798720_1535782791893616_596557419253421167_n.jpg" alt="Breakfast Club pancakes"></figure>
+      <figure><img loading="lazy" src="photos/713789306_1552689443536284_2145553907697175480_n.jpg" alt="Veg Pulao"></figure>
+      <figure><img loading="lazy" src="photos/721152515_1557705553034673_3229537555170478098_n.jpg" alt="Apple Feta Cheese Salad"></figure>
+      <figure><img loading="lazy" src="photos/688892460_1524898769648685_7624558556962714351_n.jpg" alt="Spinach & Mushroom Omelette"></figure>
+      <figure><img loading="lazy" src="photos/631073106_1450822350389661_4540734983235063364_n.jpg" alt="Sweetened with Love dessert"></figure>
+      <figure><img loading="lazy" src="photos/704671505_1539425271529368_96963851806247929_n.jpg" alt="Southern Prawn Curry"></figure>
+      <figure><img loading="lazy" src="photos/719010002_1557714113033817_7358517062288974095_n.jpg" alt="Mac & Cheese"></figure>
+      <figure><img loading="lazy" src="photos/716788640_1553454096793152_232828017809015989_n.jpg" alt="Peri Peri Paneer Pan Pizza"></figure>
+    </div>
+  </div></section>
+
+  <!-- REVIEWS -->
+  <section><div class="wrap reveal">
+    <span class="eyebrow">6,000+ reviews · 4.5–4.7★</span>
+    <p class="quote serif" style="margin-top:.8rem"><span class="mark">“</span>Wonderful cafe with a cosy atmosphere, tasty food, and kind service.<span class="mark">”</span></p>
+    <div class="rev-grid">
+      <div class="rev"><div class="star">★★★★★</div><p>"Warm and cosy, perfect for catching up — the desserts were delicious."</p><div class="who">— Mahima N., Local Guide</div></div>
+      <div class="rev"><div class="star">★★★★★</div><p>"A cosy little tucked-away cafe. Comfortable and welcoming — great for work or your tribe."</p><div class="who">— Shireen A., Local Guide</div></div>
+      <div class="rev"><div class="star">★★★★★</div><p>"Lovely place, humble staff, and a fun spot. Cashless and easy."</p><div class="who">— Google review</div></div>
+    </div>
+  </div></section>
+
+  <!-- VISIT / LOCATIONS -->
+  <section class="little" style="background:var(--blush)"><div class="wrap reveal">
+    <span class="eyebrow">Two homes in Hyderabad</span>
+    <h2 class="big serif" style="margin:.5rem 0 1.4rem;text-align:left">Find your Cravery.</h2>
+    <div class="locs">
+      <div class="loc">
+        <h3 class="serif"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--terra)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0z"/><circle cx="12" cy="10" r="3"/></svg> Jubilee Hills <span style="font-size:.7rem;color:var(--terra);font-family:'DM Sans'">· flagship</span></h3>
+        <div class="meta">Plot 416A, Road No. 78, Film Nagar, Jubilee Hills 500096<br>Open daily · 9 AM – 1 AM · +91 93465 01863 · ★ 4.7</div>
+        <div class="acts"><a class="btn btn-primary" href="#">Order</a><a class="btn btn-ghost" href="#">Reserve</a><a class="btn btn-ghost" href="#">Directions</a></div>
+      </div>
+      <div class="loc">
+        <h3 class="serif"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--terra)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0z"/><circle cx="12" cy="10" r="3"/></svg> Financial District</h3>
+        <div class="meta">Puppalaguda, Gandipet, Financial District<br>Open daily · 9 AM – 1 AM · +91 81213 88135 · ★ 4.4</div>
+        <div class="acts"><a class="btn btn-primary" href="#">Order</a><a class="btn btn-ghost" href="#">Reserve</a><a class="btn btn-ghost" href="#">Directions</a></div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- FINAL -->
+  <section id="order"><div class="wrap"><div class="final reveal">
+    <span class="eyebrow" style="color:#ffe2d6">Your cravings, your storefront</span>
+    <h2 class="serif" style="margin-top:.6rem">Order direct. Reserve direct. <span class="script">Keep what's yours.</span></h2>
+    <p>No app in the middle, no commission — just Cravery and the people who love it.</p>
+    <div style="display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center">
+      <a class="btn btn-primary" href="#">Order Pickup / Delivery</a>
+      <a class="btn btn-ghost" href="#">Reserve a Table</a>
+    </div>
+  </div></div></section>
+
+  <footer class="site"><div class="wrap foot">
+    <div class="brand"><img class="logo-badge" src="badge.png" alt="Cravery"><span class="wordmark">cravery</span></div>
+    <div>Jubilee Hills · Financial District · Hyderabad — 9 AM to 1 AM</div>
+    <div class="credit">Concept mockup · designed by Thar Digital Services</div>
+  </div></footer>
+
+  <a class="btn btn-primary sticky-order" href="#order">Order Direct</a>
+
+  <script>
+    const io = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  </script>
+</body>
+</html>
