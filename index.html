@@ -166,9 +166,59 @@
   .foot .wordmark{color:var(--cream)}
   .credit{font-size:.78rem;opacity:.7}
 
-  /* mobile sticky order */
-  .sticky-order{position:fixed;right:1rem;bottom:1rem;z-index:50;box-shadow:0 14px 30px -12px rgba(57,33,26,.6)}
-  @media(min-width:920px){.sticky-order{display:none}}
+  /* ===== mobile ===== */
+  @media (max-width:640px){
+    /* prevent any horizontal overflow */
+    html,body{max-width:100%;overflow-x:hidden}
+    img{max-width:100%}
+
+    .nav{justify-content:center}
+    .marquee span{font-size:.85rem;gap:1.6rem;padding-right:1.6rem}
+
+    /* hero: smaller headline so it wraps cleanly at 390/414, fully centered */
+    h1.hero{font-size:clamp(1.85rem,7.6vw,2.35rem);line-height:1.14;margin:.7rem 0 .55rem;word-break:break-word;overflow-wrap:anywhere}
+    h1.hero .script{font-size:1.1em;padding:0 .1em .14em}
+    .hero-inner{text-align:center}
+    .eyebrow{letter-spacing:.12em;font-size:.66rem}
+    .hero .eyebrow{display:block}
+    .hero p.lead{margin-left:auto;margin-right:auto}
+    .cta-row,.ratings{justify-content:center}
+    .ratings .pill{font-size:.82rem}
+    .hero-art{min-height:340px;margin-top:.6rem}
+
+    /* consistent centered section headings */
+    h2.big{text-align:center!important}
+    #menu .wrap>.reveal{text-align:center;margin-left:auto;margin-right:auto}
+    .statement{text-align:center}
+    .statement h2,.statement p{margin-left:auto;margin-right:auto}
+    .spread{text-align:center}
+    .spread p{margin-left:auto;margin-right:auto}
+    .spread .meta{justify-content:center}
+    .story-grid>div{text-align:center}
+    .story p{margin-left:auto;margin-right:auto}
+    .story .sign,.story .press{text-align:center}
+
+    /* feed header: beat the inline flex space-between, stack + center */
+    #feed .wrap>div:first-child{flex-direction:column!important;align-items:center!important;text-align:center!important;gap:.6rem}
+
+    /* gallery: single-column full-width PORTRAIT cards (inherit 4/5) */
+    .gallery{grid-template-columns:1fr}
+    .gallery figure{transform:none!important}
+
+    .quote{text-align:center;margin-left:auto;margin-right:auto}
+    .rev{text-align:center}
+
+    /* locations: beat inline text-align:left, center heading + cards */
+    section.little .wrap>h2.big{text-align:center!important}
+    .loc{text-align:center}
+    .loc h3,.loc .acts{justify-content:center}
+
+    /* comfortable tap targets */
+    .btn{padding:.95rem 1.4rem;min-height:44px}
+    .nav-links a,.order{min-height:44px;display:inline-flex;align-items:center}
+
+    .foot{flex-direction:column;align-items:center;text-align:center}
+  }
 </style>
 </head>
 <body id="top">
@@ -372,8 +422,6 @@
     <div>Jubilee Hills · Financial District · Hyderabad — 9 AM to 1 AM</div>
     <div class="credit">Concept mockup · designed by Thar Digital Services</div>
   </div></footer>
-
-  <a class="btn btn-primary sticky-order" href="#order">Order Direct</a>
 
   <script>
     const io = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
